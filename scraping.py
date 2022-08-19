@@ -22,7 +22,7 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "hemisphere_image_urls": hemisphere_image_urls(hemisphere_image_urls)
+        "hemisphere_image_urls": hemisphere_image_urls(browser)
     }
 
     # Stop webdriver and return data
@@ -61,6 +61,7 @@ def mars_news(browser):
 def featured_image(browser):
     # Visit URL
     url = 'https://spaceimages-mars.com'
+    
     browser.visit(url)
 
     # Find and click the full image button
@@ -100,7 +101,7 @@ def mars_facts():
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
 
-def hemisphere_image_urls(hemisphere_image_urls):
+def hemisphere_image_urls(browser):
     url = 'https://marshemispheres.com/'
 
     browser.visit(url)
